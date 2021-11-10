@@ -1,7 +1,12 @@
 import styled from "styled-components";
+import Article from "./Article";
 
 const Container = styled.div``;
 
 export default function Homepage() {
-    return <Container>Hello</Container>;
+    return (
+        <Container>
+            <Article />
+        </Container>
+    );
 }
