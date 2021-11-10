@@ -3,13 +3,12 @@ import { Link } from "react-router-dom";
 
 const Container = styled.header`
     position: fixed;
-    top: 0 px;
-    left: 0 px;
-    right: 0 px;
+    top: 0px;
+    left: 0px;
+    right: 0px;
     height: 56px;
     width: 100%;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-    z-index: 100;
 
     a {
         color: inherit;
