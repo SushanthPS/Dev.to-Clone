@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Wrap } from "./PostStyle";
+import { Wrap } from "./PostStyle.jsx";
 export const Post = () => {
   return (
     <Wrap>

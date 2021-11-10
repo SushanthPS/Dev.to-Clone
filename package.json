@@ -42,14 +42,6 @@
   },
   "description": "1) ReactJS for the frontend\r 2) NodeJS, Express And MongoDB for the backend",
   "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/SushanthPS/Dev.to-Clone.git"
-  },
   "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/SushanthPS/Dev.to-Clone/issues"
-  },
-  "homepage": "https://github.com/SushanthPS/Dev.to-Clone#readme"
+  "license": "ISC"
 }
