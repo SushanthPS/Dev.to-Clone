@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Wrap } from "./PostStyle.jsx";
+import { RiImageAddFill } from "react-icons/ri";
 export const Post = () => {
+  const [progress1, setProgress1] = useState(0);
+  const [progress2, setProgress2] = useState(0);
+  const [url1, setUrl1] = useState("");
+  const [url2, setUrl2] = useState("");
   return (
     <Wrap>
       <div className="postContainer">
@@ -24,7 +29,92 @@ export const Post = () => {
               </Link>
               <div>Create Post</div>
             </div>
+            <div className="change">
+              <div className="edit">Edit</div>
+              <div className="preview">Preview</div>
+            </div>
           </nav>
+          <div className="postWrapper">
+            <div className="editsection">
+              <div className="addImg">
+                <input type="file" />
+                <div className="addCover">Add a cover image</div>
+              </div>
+              {progress1 === 50 ? (
+                <div className="coverImg">
+                  <img src="" alt="" />
+                  <div className="change">Change</div>
+                  <div className="remove">Remove</div>
+                </div>
+              ) : (
+                <div className="loadImg">
+                  <div className="loader"></div>
+                  <span>Uploading...</span>
+                </div>
+              )}
+              {/*Title input */}
+              <div className="title">
+                <textarea
+                  required="true"
+                  rows="1"
+                  placeholder="New post title here..."
+                />
+              </div>
+              {/* tags input */}
+              <div className="tags">
+                <textarea
+                  placeholder="Add upto 4 tags..."
+                  rows="1"
+                  type="text"
+                />
+              </div>
+              <div className="uploadImg2">
+                <input type="file" />
+                {progress2 === 50 || progress1 === 0 ? (
+                  <div className="upload">
+                    <RiImageAddFill /> Upload image
+                  </div>
+                ) : (
+                  <div className="load">
+                    <div className="loader"></div>
+                    <span>Uploading...</span>
+                  </div>
+                )}
+                {url2 && (
+                  <div className="clipboard">
+                    <input type="text" value={url2} readOnly />
+                    <div className="copy">
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                        role="img"
+                        aria-labelledby="fc5f15add1e114844f5e"
+                      >
+                        <title id="fc5f15add1e114844f5e">
+                          Copy Markdown for image
+                        </title>
+                        <path d="M7 6V3a1 1 0 011-1h12a1 1 0 011 1v14a1 1 0 01-1 1h-3v3c0 .552-.45 1-1.007 1H4.007A1 1 0 013 21l.003-14c0-.552.45-1 1.007-1H7zm2 0h8v10h2V4H9v2zm-2 5v2h6v-2H7zm0 4v2h6v-2H7z"></path>
+                      </svg>
+                      Copied..
+                    </div>
+                  </div>
+                )}
+              </div>
+              <div className="markDown">
+                <textarea
+                  placeholder="Write your post content here..."
+                  rows="8"
+                />
+              </div>
+            </div>
+            <div className="preview">
+              <img src={url1} alt="" />
+              <h1>{}</h1>
+              <p></p>
+            </div>
+          </div>
         </div>
       </div>
     </Wrap>
