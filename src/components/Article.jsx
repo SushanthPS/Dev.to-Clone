@@ -136,6 +136,11 @@ function Article() {
 }
 
 const ArticleDiv = styled.div`
+    position:sticky;
+    top:57px;
+    z-index:-10;
+    padding-top:20px;
+    padding-bottom:250px;
     width:100%;
     background-color:rgb(239,239,239);
     display:flex;
@@ -143,12 +148,13 @@ const ArticleDiv = styled.div`
 
   .col1{
       flex-basis:9%;
+     
       .icons{
          
              margin-left:50px;
              margin-right:28px;
             position: sticky;
-            top:45px;
+            top:125px;
             margin-bottom: 400px;
 
           .icon{
@@ -171,9 +177,9 @@ const ArticleDiv = styled.div`
 
     .col2{
       flex-basis:61%;
-      border-radius: 8px;
+      border-radius: 10px;
       border: 1px solid #D8D8D8;
-
+      
       .coverImageDiv{
         width:100%;
           height:341px;
@@ -181,8 +187,8 @@ const ArticleDiv = styled.div`
           img{
               width:100%;
               height:100%;
-              border-top-left-radius: 8px;
-              border-top-right-radius: 8px;
+              border-top-left-radius: 10px;
+              border-top-right-radius: 10px;
 
           }
         }
@@ -191,6 +197,8 @@ const ArticleDiv = styled.div`
           width:84%;
           padding:8%;
           background-color: white;
+          border-bottom-left-radius: 10px;
+          border-bottom-right-radius: 10px;
          .profile{
               width: 300px;
               display:flex;
@@ -237,7 +245,7 @@ const ArticleDiv = styled.div`
         padding-right: 50px;
         .userDetails{
             position: sticky;
-            top:8px;
+            top:77px;
             margin-bottom: 200px;
             width:100%;
             background-color: rgb(249,249,249);
@@ -245,12 +253,12 @@ const ArticleDiv = styled.div`
 
             .cards{
                 border: 1px solid #D8D8D8;
-                border-radius: 8px;
+                border-radius: 10px;
                 padding-bottom:20px;
                 .black{
                     background-color:black;
-                    border-top-left-radius: 8px;
-                    border-top-right-radius: 8px;
+                    border-top-left-radius: 10px;
+                    border-top-right-radius: 10px;
 
                     height:30px;
                 }
@@ -291,7 +299,7 @@ const ArticleDiv = styled.div`
                         background-color: rgb(50,62,190);
                         color:#f9f9f9;
                         padding:3%;
-                        border-radius: 8px;
+                        border-radius: 10px;
                         font-size: 16px;
                         font-weight: 600;
                         border-style: none;
