@@ -17,7 +17,7 @@ function Article() {
 
    
     const [data, setData] = useState([]);
-    // console.log('data:', data)
+  
     const [isLoading, setLoading] = useState(true);
 
     const [tagData, setTagData] = useState([]);
@@ -143,7 +143,6 @@ const ArticleDiv = styled.div`
 
   .col1{
       flex-basis:9%;
-      /* border:1px solid red; */
       .icons{
          
              margin-left:50px;
@@ -151,7 +150,6 @@ const ArticleDiv = styled.div`
             position: sticky;
             top:45px;
             margin-bottom: 400px;
-            /* border:1px solid red; */
 
           .icon{
               
@@ -228,7 +226,6 @@ const ArticleDiv = styled.div`
                 width:100%;
                 img{
                     width:100%;
-                    /* height:100px; */
                 }
             }
         }
@@ -263,7 +260,6 @@ const ArticleDiv = styled.div`
                     width:100%-20px;
                     padding-left: 20px;
                     padding-right: 20px;
-                    /* border: 1px solid red; */
                     .UserProfile{
                         width:300px;
                         display:flex;
