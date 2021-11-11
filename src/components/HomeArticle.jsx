@@ -219,12 +219,25 @@ const Container = styled.article`
     .name:hover {
         background-color: rgba(0, 0, 0, 0.035);
     }
+
+    .cover-photo {
+        display: block;
+        width: 100%;
+        height: auto;
+        background-size: cover;
+        background-position: center center;
+        border-radius: 0.375rem 0.375rem 0 0;
+    }
 `;
 
-export default function HomeArticle({ obj }) {
+export default function HomeArticle({ obj, i }) {
     return (
         <Container>
             <Link></Link>
+            {i === 0 && (
+                <img className="cover-photo" src={obj.social_image} alt="" />
+            )}
+
             <div className="story">
                 <div className="story-top">
                     <div>
