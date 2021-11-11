@@ -1,9 +1,11 @@
-import "./App.css";
+
+import Searchbar from "./components/Searchbar";
 import Routes from "./routes/Routes";
 
 function App() {
     return (
-        <div className="App">
+        <div >
+            <Searchbar/>
             <Routes />
         </div>
     );
