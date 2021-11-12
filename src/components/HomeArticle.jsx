@@ -272,7 +272,7 @@ const Hover = styled.div`
 
     .cont {
         display: grid;
-        padding: 0;
+        padding: 0 !important;
         box-sizing: border-box;
         grid-template-columns: auto !important;
     }
@@ -300,7 +300,12 @@ const Hover = styled.div`
         font-size: 1.25rem;
         line-height: 1.5;
         font-weight: 700;
-        margin-top: 15px;
+        margin-top: 1rem;
+    }
+
+    .name:hover {
+        color: #323ebe;
+        background-color: transparent;
     }
 
     .logo > img {
