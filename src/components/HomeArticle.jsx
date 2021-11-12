@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 
 const Container = styled.article`
@@ -386,13 +386,13 @@ export default function HomeArticle({ obj, i }) {
     const [user, setUser] = useState({});
     const [pop, setPop] = useState(false);
 
-    useEffect(() => {
+    const getData = () => {
         axios
             .get(
                 `https://dev.to/api/users/by_username?url=${obj.user.username}`
             )
             .then((el) => setUser(el.data));
-    }, [obj.user.username, pop]);
+    };
 
     return (
         <Container>
@@ -416,7 +416,10 @@ export default function HomeArticle({ obj, i }) {
                             <div>
                                 <div
                                     className="name"
-                                    onMouseEnter={() => setPop(true)}
+                                    onMouseEnter={() => {
+                                        setPop(true);
+                                        getData();
+                                    }}
                                     onMouseLeave={() => setPop(false)}
                                 >
                                     <button>{obj.user.name}</button>
