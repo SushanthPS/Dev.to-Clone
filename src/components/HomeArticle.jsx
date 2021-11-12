@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -417,8 +416,8 @@ export default function HomeArticle({ obj, i }) {
                             <div>
                                 <div
                                     className="name"
-                                    onMouseOver={() => setPop(true)}
-                                    onMouseOut={() => setPop(false)}
+                                    onMouseEnter={() => setPop(true)}
+                                    onMouseLeave={() => setPop(false)}
                                 >
                                     <button>{obj.user.name}</button>
                                     {pop && (
