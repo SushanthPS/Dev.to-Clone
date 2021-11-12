@@ -1,8 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+<<<<<<< HEAD
 import HomeArticle from "./HomeArticle";
 import { Link } from "react-router-dom";
+=======
+
+>>>>>>> 33b9aba8b0437826fa5dd23bb616c9bf321ca13d
 
 const Container = styled.div`
     flex: 1 auto;
@@ -372,6 +376,7 @@ export default function Homepage() {
     };
 
     return (
+<<<<<<< HEAD
         <Container feed={feed} time={time}>
             <div className="cont">
                 <Left>
@@ -846,6 +851,10 @@ export default function Homepage() {
                     </aside>
                 </Right>
             </div>
+=======
+        <Container>
+           home page
+>>>>>>> 33b9aba8b0437826fa5dd23bb616c9bf321ca13d
         </Container>
     );
 }

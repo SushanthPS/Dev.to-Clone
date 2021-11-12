@@ -1,4 +1,5 @@
 import { Route, Switch } from "react-router-dom";
+import Article from "../components/Article";
 import Homepage from "../components/Homepage";
 import Error from "../components/Error";
 import Navbar from "../components/Navbar";
@@ -12,7 +13,11 @@ export default function Routes() {
                 <Homepage />
                 <Footer />
             </Route>
-            <Route path="/article/:articleId"></Route>
+            <Route path="/article/:id" exact>
+                <Navbar />
+                <Article />
+                <Footer />
+            </Route>
             <Route>
                 <Error />
             </Route>
