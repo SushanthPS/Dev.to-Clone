@@ -3,6 +3,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    text-rendering: optimizeSpeed;
 }
 
 code {

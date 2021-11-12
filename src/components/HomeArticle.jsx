@@ -88,14 +88,27 @@ const Container = styled.article`
         margin-bottom: 0;
         position: relative;
         font-weight: 500;
-        padding: 10px 3px;
         border-radius: 5px;
     }
 
-    .name > p {
+    .name > button {
         font-size: 0.875rem;
-        padding: 0;
-        margin: calc(0.5rem * -1) calc(0.25rem * -1);
+        padding: 1rem 0.4rem;
+        margin-left: calc(0.25rem * -1);
+        margin-top: calc(0.5rem * -1);
+        margin-bottom: calc(0.5rem * -1);
+        background: transparent;
+        color: #3d3d3d;
+        border: 0;
+        box-shadow: rgba(0, 0, 0, 0.05);
+        font-weight: 600;
+        position: relative;
+        display: inline-block;
+        border-radius: 0.375rem;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        overflow-wrap: normal;
     }
 
     .time {
@@ -235,8 +248,6 @@ const Container = styled.article`
 const Hover = styled.div`
     border-top: 2rem solid #000000;
     display: block;
-    animation: hoverAppear 590ms;
-    transition: border, border-top;
     color: #090909;
     padding: 1rem;
     padding-top: 0;
@@ -262,14 +273,13 @@ const Hover = styled.div`
 
     .cont {
         display: grid;
-        grid-gap: 1rem;
-        grid-template-columns: 1fr;
         padding: 0;
+        box-sizing: border-box;
+        grid-template-columns: auto !important;
     }
 
     .name-logo {
         margin-top: calc(1rem * -1);
-        display: flex;
         cursor: pointer;
     }
 
@@ -291,7 +301,7 @@ const Hover = styled.div`
         font-size: 1.25rem;
         line-height: 1.5;
         font-weight: 700;
-        margin-top: 8px;
+        margin-top: 15px;
     }
 
     .logo > img {
@@ -316,7 +326,6 @@ const Hover = styled.div`
     }
 
     .follow-button {
-        margin-top: -40px;
         button {
             white-space: nowrap;
             width: 100%;
@@ -374,19 +383,20 @@ export default function HomeArticle({ obj, i }) {
     const [pop, setPop] = useState(false);
 
     const getData = async () => {
-        const res = await axios.get(
-            `https://dev.to/api/users/by_username?url=${obj.user.username}`
-        );
-        setUser(res.data);
+        try {
+            const res = await axios.get(
+                `https://dev.to/api/users/by_username?url=${obj.user.username}`
+            );
+            await setUser(res.data);
+        } catch (err) {}
     };
 
     useEffect(() => {
         getData();
-    }, []);
+    }, [pop]);
 
     return (
         <Container>
-            <Link></Link>
             {i === 0 && (
                 <img className="cover-photo" src={obj.social_image} alt="" />
             )}
@@ -404,12 +414,13 @@ export default function HomeArticle({ obj, i }) {
                             </div>
                         </div>
                         <div className="test">
-                            <div
-                                onMouseOver={() => setPop(true)}
-                                onMouseOut={() => setPop(false)}
-                            >
-                                <div className="name">
-                                    <p>{obj.user.name}</p>
+                            <div>
+                                <div
+                                    className="name"
+                                    onMouseOver={() => setPop(true)}
+                                    onMouseOut={() => setPop(false)}
+                                >
+                                    <button>{obj.user.name}</button>
                                     {pop && (
                                         <Hover>
                                             <div className="cont">
@@ -426,7 +437,7 @@ export default function HomeArticle({ obj, i }) {
                                                         {user.name}
                                                     </span>
                                                 </div>
-                                                <br />
+
                                                 <div className="follow-button">
                                                     <button>Follow</button>
                                                 </div>
