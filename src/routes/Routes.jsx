@@ -12,7 +12,7 @@ export default function Routes() {
                 <Homepage />
                 <Footer />
             </Route>
-            <Route path="/:articleId"></Route>
+            <Route path="/article/:articleId"></Route>
             <Route>
                 <Error />
             </Route>

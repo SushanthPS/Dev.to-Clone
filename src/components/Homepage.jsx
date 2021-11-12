@@ -227,7 +227,122 @@ const Left = styled.div`
     }
 `;
 
-const Right = styled.div``;
+const Right = styled.div`
+    display: block;
+    width: 1fr;
+    box-sizing: border-box;
+    font-size: 1rem;
+
+    .aside {
+        display: grid;
+        gap: 1rem;
+    }
+
+    .first {
+        padding: 1rem;
+        background-color: #f9f9f9;
+        color: #242424;
+        box-shadow: 0 0 0 1px rgba(9, 9, 9, 0.05);
+        border-radius: Max(
+                0px,
+                Min(0.375rem, calc((100vw - 4px - 100%) * 9999))
+            ) / 0.375rem;
+
+        p {
+            margin: 0;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: 0.375rem;
+            display: inline-block;
+            vertical-align: middle;
+            margin: 10px auto;
+        }
+    }
+
+    .blue-bold {
+        color: #3b49df;
+        font-weight: 700;
+    }
+
+    section {
+        background-color: #f9f9f9;
+        color: #242424;
+        box-shadow: 0 0 0 1px rgba(9, 9, 9, 0.05);
+        border-radius: Max(
+                0px,
+                Min(0.375rem, calc((100vw - 4px - 100%) * 9999))
+            ) / 0.375rem;
+        overflow-wrap: anywhere;
+    }
+
+    .header {
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid #efefef;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #242424;
+
+        h3 {
+            font-size: 1.25rem;
+            line-height: 1.5;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        span {
+            font-weight: 500;
+            font-size: 0.875rem;
+            color: #3b49df;
+            cursor: pointer;
+        }
+    }
+
+    .list-body {
+        cursor: pointer;
+    }
+
+    .list-body > span {
+        display: block;
+        padding: 1rem;
+        border-bottom: 1px solid #efefef;
+        color: #242424;
+    }
+
+    .list-body > span:hover {
+        color: #3b49df;
+        background-color: #ffffff;
+    }
+
+    .list-body > span > div:nth-of-type(2) {
+        color: #717171;
+        font-size: 0.875rem;
+        padding-top: 0.25rem;
+    }
+
+    .create-list {
+        display: block;
+        text-align: center;
+        font-weight: 500;
+        font-size: 0.875rem;
+        padding: 0.75rem !important;
+    }
+
+    .new-button {
+        background-color: #3b49df;
+        border: 1px solid #3b49df;
+        color: white;
+        font-size: 0.75rem;
+        padding: 4px;
+        text-align: center;
+        line-height: 1;
+        border-radius: 0.375rem;
+        display: inline-block;
+    }
+`;
 
 export default function Homepage() {
     const [feed, setFeed] = useState("Feed");
@@ -605,13 +720,131 @@ export default function Homepage() {
                     </header>
                     <div className="middle-data">
                         {data.map((obj, i) => (
-                            <Link to={`/${obj.id}`}>
+                            <Link to={`/article/${obj.id}`}>
                                 <HomeArticle key={obj.id} i={i} obj={obj} />
                             </Link>
                         ))}
                     </div>
                 </div>
-                <Right></Right>
+                <Right>
+                    <aside className="aside">
+                        <div className="first">
+                            <p>
+                                <img
+                                    src="https://res.cloudinary.com/practicaldev/image/fetch/s--SHlJgkk0--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_350/https://jess.forem.lol/remoteimages/uploads/articles/a3ojuveqrskiei1m6x6x.png"
+                                    alt="Smiley Icon"
+                                    height="1260"
+                                    width="2240"
+                                    loading="lazy"
+                                />
+                            </p>
+                            <p>
+                                <strong>DEV is built on </strong>{" "}
+                                <span className="blue-bold">Forem</span> — open
+                                source software for a new community web. If you
+                                want to discuss functionality with the team and
+                                other folks from the community:{" "}
+                                <span className="blue-bold">
+                                    {" "}
+                                    <strong>join Forem.dev</strong>
+                                </span>
+                                . 🌱
+                            </p>
+                        </div>
+                        <section>
+                            <header className="header">
+                                <h3>Listings</h3>
+                                <div>
+                                    <span>See all</span>
+                                </div>
+                            </header>
+                            <div className="list-body">
+                                <span>
+                                    <div>
+                                        NextUI - Build beautiful React websites
+                                        regardless of your design experience
+                                    </div>
+                                    <div>products</div>
+                                </span>
+                                <span>
+                                    <div>
+                                        Get $100 for 60 days and start your
+                                        deployment journey.
+                                    </div>
+                                    <div>misc</div>
+                                </span>
+                                <span>
+                                    <div>
+                                        Senior Developer Advocate at Blues
+                                        Wireless
+                                    </div>
+                                    <div>jobs</div>
+                                </span>
+                                <span>
+                                    <div>
+                                        Technical Writer in Web development
+                                    </div>
+                                    <div>collabs</div>
+                                </span>
+                                <span>
+                                    <div>Developing a developers community</div>
+                                    <div>collabs</div>
+                                </span>
+                                <span className="create-list">
+                                    Create a Listing
+                                </span>
+                            </div>
+                        </section>
+                        <section>
+                            <header className="header">
+                                <h3>#news</h3>
+                            </header>
+                            <div className="list-body">
+                                <span>
+                                    <div>
+                                        New CSS Features, Facebook’s Facial
+                                        Recognition System in the Metaverse, &
+                                        more on DevNews!
+                                    </div>
+                                    <div>1 comment</div>
+                                </span>
+                                <span>
+                                    <div>
+                                        WordPress Maintenance Service and How it
+                                        Helps Your Website?
+                                    </div>
+                                    <div>
+                                        <span className="new-button">New</span>
+                                    </div>
+                                </span>
+                                <span>
+                                    <div>Connecting With Dot</div>
+                                    <div>
+                                        <span className="new-button">New</span>
+                                    </div>
+                                </span>
+                                <span>
+                                    <div>
+                                        What You Need to Know about Angular v13
+                                    </div>
+                                    <div>
+                                        <span className="new-button">New</span>
+                                    </div>
+                                </span>
+                                <span>
+                                    <div>
+                                        Nextazy Solution- Build Simple, Elegant,
+                                        And Secure Solutions Using Blockchain
+                                        Technology
+                                    </div>
+                                    <div>
+                                        <span className="new-button">New</span>
+                                    </div>
+                                </span>
+                            </div>
+                        </section>
+                    </aside>
+                </Right>
             </div>
         </Container>
     );

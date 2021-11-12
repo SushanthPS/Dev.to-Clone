@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Container = styled.article`
     cursor: pointer;
@@ -86,13 +88,13 @@ const Container = styled.article`
         margin-bottom: 0;
         position: relative;
         font-weight: 500;
-        padding: 6px 2px;
+        padding: 10px 3px;
         border-radius: 5px;
     }
 
     .name > p {
         font-size: 0.875rem;
-        padding: 0.25rem;
+        padding: 0;
         margin: calc(0.5rem * -1) calc(0.25rem * -1);
     }
 
@@ -230,7 +232,157 @@ const Container = styled.article`
     }
 `;
 
+const Hover = styled.div`
+    border-top: 2rem solid #000000;
+    display: block;
+    animation: hoverAppear 590ms;
+    transition: border, border-top;
+    color: #090909;
+    padding: 1rem;
+    padding-top: 0;
+    top: 100%;
+    left: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    max-width: 360px;
+    width: max-content;
+    position: absolute;
+    min-width: 250px;
+    z-index: 400;
+    background: #fff;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -2px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(9, 9, 9, 0.1);
+    border-radius: 0.375rem;
+    box-sizing: border-box;
+
+    a {
+        color: inherit;
+        text-decoration: inherit;
+    }
+
+    .cont {
+        display: grid;
+        grid-gap: 1rem;
+        grid-template-columns: 1fr;
+        padding: 0;
+    }
+
+    .name-logo {
+        margin-top: calc(1rem * -1);
+        display: flex;
+        cursor: pointer;
+    }
+
+    .logo {
+        margin-right: 0.5rem;
+        flex-shrink: 0;
+        width: 3rem;
+        height: 3rem;
+        display: inline-block;
+        border-radius: 100%;
+        position: relative;
+        background-color: #717171;
+        overflow: hidden;
+        vertical-align: middle;
+    }
+
+    .name {
+        color: #242424;
+        font-size: 1.25rem;
+        line-height: 1.5;
+        font-weight: 700;
+        margin-top: 8px;
+    }
+
+    .logo > img {
+        border-radius: 100%;
+        width: 100%;
+        height: 100%;
+        display: inline-block;
+        vertical-align: bottom;
+    }
+
+    .logo::after {
+        content: "";
+        border: 1px solid;
+        opacity: 0.15;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        border-radius: 100%;
+        pointer-events: none;
+    }
+
+    .follow-button {
+        button {
+            white-space: nowrap;
+            width: 100%;
+            border: 0px;
+            box-shadow: rgba(0, 0, 0, 0.05);
+            padding: 8px 16px;
+            font-size: 1rem;
+            position: relative;
+            display: inline-block;
+            border-radius: 0.375rem;
+            line-height: 1.5;
+            font-weight: 500;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            background: #3b49df;
+            color: white;
+        }
+
+        button:hover {
+            background: #323ebe;
+        }
+    }
+
+    .desc {
+        color: #575757;
+        font-size: 1rem;
+        font-weight: 400;
+    }
+
+    .meta {
+        color: #090909;
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+    }
+
+    .joined {
+        margin-top: 0.75rem;
+    }
+
+    .key {
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: #717171;
+    }
+`;
+
 export default function HomeArticle({ obj, i }) {
+    const [user, setUser] = useState({});
+    const [pop, setPop] = useState(false);
+
+    const getData = async () => {
+        const res = await axios.get(
+            `https://dev.to/api/users/by_username?url=${obj.user.username}`
+        );
+        setUser(res.data);
+    };
+
+    useEffect(() => {
+        getData();
+    }, []);
+
     return (
         <Container>
             <Link></Link>
@@ -251,9 +403,61 @@ export default function HomeArticle({ obj, i }) {
                             </div>
                         </div>
                         <div className="test">
-                            <div className="name">
-                                <p>{obj.user.name}</p>
+                            <div
+                                onMouseOver={() => setPop(true)}
+                                onMouseOut={() => setPop(false)}
+                            >
+                                <div className="name">
+                                    <p>{obj.user.name}</p>
+                                    {pop && (
+                                        <Hover>
+                                            <div className="cont">
+                                                <div className="name-logo">
+                                                    <span className="logo">
+                                                        <img
+                                                            src={
+                                                                user.profile_image
+                                                            }
+                                                            alt=""
+                                                        />
+                                                    </span>
+                                                    <span className="name">
+                                                        {user.name}
+                                                    </span>
+                                                </div>
+
+                                                <div className="follow-button">
+                                                    <button>Follow</button>
+                                                </div>
+                                                <div className="desc">
+                                                    {user.summary}
+                                                </div>
+                                                <div className="meta">
+                                                    <ul>
+                                                        <li className="location">
+                                                            <div className="key">
+                                                                LOCATION
+                                                            </div>
+                                                            <div className="value">
+                                                                {user.location}
+                                                            </div>
+                                                        </li>
+                                                        <li className="joined">
+                                                            <div className="key">
+                                                                JOINED
+                                                            </div>
+                                                            <div className="value">
+                                                                {user.joined_at}
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </Hover>
+                                    )}
+                                </div>
                             </div>
+
                             <div className="time">
                                 <time dateTime>
                                     {obj.readable_publish_date} (17 hours ago)
