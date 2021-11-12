@@ -453,7 +453,8 @@ export default function HomeArticle({ obj, i }) {
                                                                 LOCATION
                                                             </div>
                                                             <div className="value">
-                                                                {user.location}
+                                                                {user.location ||
+                                                                    "Unknown"}
                                                             </div>
                                                         </li>
                                                         <li className="joined">
@@ -461,7 +462,8 @@ export default function HomeArticle({ obj, i }) {
                                                                 JOINED
                                                             </div>
                                                             <div className="value">
-                                                                {user.joined_at}
+                                                                {user.joined_at ||
+                                                                    "Unknown"}
                                                             </div>
                                                         </li>
                                                     </ul>

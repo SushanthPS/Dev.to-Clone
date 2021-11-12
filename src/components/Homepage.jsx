@@ -363,9 +363,9 @@ export default function Homepage() {
         else if (time === "Infinity") t = 99999;
 
         if (feed === "Feed")
-            res = await axios.get("https://dev.to/api/articles");
+            res = await axios.get(`https://dev.to/api/articles`);
         else if (feed === "Latest")
-            res = await axios.get("https://dev.to/api/articles/latest");
+            res = await axios.get(`https://dev.to/api/articles/latest`);
         else if (feed === "Top")
             res = await axios.get(`https://dev.to/api/articles?top=${t}`);
         setData(res.data);
