@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Wrap } from "./PostStyle.jsx";
 import { RiImageAddFill } from "react-icons/ri";
+import ReactMarkdown from "react-markdown";
+import rehypeRaw from "rehype-raw";
 export const Post = () => {
   const [progress1, setProgress1] = useState(0);
   const [progress2, setProgress2] = useState(0);
@@ -113,9 +115,14 @@ export const Post = () => {
               <img src={url1} alt="" />
               <h1>{}</h1>
               <p></p>
+              <ReactMarkdown rehypePlugins={[rehypeRaw]} children={""} />
             </div>
           </div>
+          <div className="publish">
+            <div className="save">Publish</div>
+          </div>
         </div>
+        <div className="rightBar"></div>
       </div>
     </Wrap>
   );
