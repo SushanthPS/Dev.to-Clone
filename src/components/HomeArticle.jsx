@@ -316,6 +316,7 @@ const Hover = styled.div`
     }
 
     .follow-button {
+        margin-top: -40px;
         button {
             white-space: nowrap;
             width: 100%;
@@ -425,7 +426,7 @@ export default function HomeArticle({ obj, i }) {
                                                         {user.name}
                                                     </span>
                                                 </div>
-
+                                                <br />
                                                 <div className="follow-button">
                                                     <button>Follow</button>
                                                 </div>
