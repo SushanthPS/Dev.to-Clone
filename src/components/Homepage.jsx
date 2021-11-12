@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import HomeArticle from "./HomeArticle";
 import { Link } from "react-router-dom";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 const Container = styled.div`
     flex: 1 auto;
@@ -348,10 +349,11 @@ export default function Homepage() {
     const [feed, setFeed] = useState("Feed");
     const [time, setTime] = useState("Week");
     const [data, setData] = useState([]);
+    const [page, setPage] = useState(1);
 
     useEffect(() => {
         getData();
-    }, [feed, time]);
+    }, [feed, time, page]);
 
     const getData = async () => {
         let res;
@@ -363,12 +365,16 @@ export default function Homepage() {
         else if (time === "Infinity") t = 99999;
 
         if (feed === "Feed")
-            res = await axios.get(`https://dev.to/api/articles`);
+            res = await axios.get(`https://dev.to/api/articles?page=${page}`);
         else if (feed === "Latest")
-            res = await axios.get(`https://dev.to/api/articles/latest`);
+            res = await axios.get(
+                `https://dev.to/api/articles/latest?page=${page}`
+            );
         else if (feed === "Top")
-            res = await axios.get(`https://dev.to/api/articles?top=${t}`);
-        setData(res.data);
+            res = await axios.get(
+                `https://dev.to/api/articles?top=${t}&page=${page}`
+            );
+        setData([...data, ...res.data]);
     };
 
     return (
@@ -675,17 +681,35 @@ export default function Homepage() {
                         <nav>
                             <ul>
                                 <li>
-                                    <span onClick={() => setFeed("Feed")}>
+                                    <span
+                                        onClick={() => {
+                                            setData([]);
+                                            setPage(1);
+                                            setFeed("Feed");
+                                        }}
+                                    >
                                         Feed
                                     </span>
                                 </li>
                                 <li>
-                                    <span onClick={() => setFeed("Latest")}>
+                                    <span
+                                        onClick={() => {
+                                            setData([]);
+                                            setPage(1);
+                                            setFeed("Latest");
+                                        }}
+                                    >
                                         Latest
                                     </span>
                                 </li>
                                 <li>
-                                    <span onClick={() => setFeed("Top")}>
+                                    <span
+                                        onClick={() => {
+                                            setData([]);
+                                            setPage(1);
+                                            setFeed("Top");
+                                        }}
+                                    >
                                         Top
                                     </span>
                                 </li>
@@ -693,23 +717,45 @@ export default function Homepage() {
                             {feed === "Top" && (
                                 <ul>
                                     <li>
-                                        <span onClick={() => setTime("Week")}>
+                                        <span
+                                            onClick={() => {
+                                                setData([]);
+                                                setPage(1);
+                                                setTime("Week");
+                                            }}
+                                        >
                                             Week
                                         </span>
                                     </li>
                                     <li>
-                                        <span onClick={() => setTime("Month")}>
+                                        <span
+                                            onClick={() => {
+                                                setData([]);
+                                                setPage(1);
+                                                setTime("Month");
+                                            }}
+                                        >
                                             Month
                                         </span>
                                     </li>
                                     <li>
-                                        <span onClick={() => setTime("Year")}>
+                                        <span
+                                            onClick={() => {
+                                                setData([]);
+                                                setPage(1);
+                                                setTime("Year");
+                                            }}
+                                        >
                                             Year
                                         </span>
                                     </li>
                                     <li>
                                         <span
-                                            onClick={() => setTime("Infinity")}
+                                            onClick={() => {
+                                                setData([]);
+                                                setPage(1);
+                                                setTime("Infinity");
+                                            }}
                                         >
                                             Infinity
                                         </span>
@@ -719,11 +765,17 @@ export default function Homepage() {
                         </nav>
                     </header>
                     <div className="middle-data">
-                        {data.map((obj, i) => (
-                            <Link to={`/article/${obj.id}`}>
-                                <HomeArticle key={obj.id} i={i} obj={obj} />
-                            </Link>
-                        ))}
+                        <InfiniteScroll
+                            dataLength={data.length}
+                            next={() => setPage(page + 1)}
+                            hasMore={true}
+                        >
+                            {data.map((obj, i) => (
+                                <Link to={`/article/${obj.id}`}>
+                                    <HomeArticle key={obj.id} i={i} obj={obj} />
+                                </Link>
+                            ))}
+                        </InfiniteScroll>
                     </div>
                 </div>
                 <Right>
