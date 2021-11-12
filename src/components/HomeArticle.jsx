@@ -386,18 +386,13 @@ export default function HomeArticle({ obj, i }) {
     const [user, setUser] = useState({});
     const [pop, setPop] = useState(false);
 
-    const getData = async () => {
-        try {
-            const res = await axios.get(
-                `https://dev.to/api/users/by_username?url=${obj.user.username}`
-            );
-            await setUser(res.data);
-        } catch (err) {}
-    };
-
     useEffect(() => {
-        getData();
-    }, [pop]);
+        axios
+            .get(
+                `https://dev.to/api/users/by_username?url=${obj.user.username}`
+            )
+            .then((el) => setUser(el.data));
+    }, [obj.user.username, pop]);
 
     return (
         <Container>
