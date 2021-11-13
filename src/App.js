@@ -1,7 +1,8 @@
 // import "./App.css";
-import { Post } from "./components/Post/Post";
 
-import Routes from "./routes/Routes";
+import { Post } from "./components/Post/Post/Post";
+
+// import Routes from "./routes/Routes";
 
 function App() {
   return (
