@@ -8,10 +8,7 @@ import heart from "../images/heart.svg"
 import unicorn from "../images/unicorn.svg"
 import bookmark from "../images/bookmark.svg"
 
-// const params = useParams();  //params.id
-//  <Link to={`/${e.id}`}></Link> 
 
-//  <Route exact path="/article/:id"></Route> 
 
 function Article() {
 
@@ -22,15 +19,15 @@ function Article() {
 
     const [tagData, setTagData] = useState([]);
     const [description, setDescription] = useState("");
-    console.log('description:', description)
+    // console.log('description:', description)
     
    
   
    
     useEffect(() => {
-        axios.get("https://dev.to/api/articles/710591")
+        axios.get("https://dev.to/api/articles/710577")
         .then((res) => {
-            console.log('res:', res.data)
+            // console.log('res:', res.data)
             setData(res.data)
             setTagData(res.data.tags)
             setLoading(false)
@@ -145,7 +142,7 @@ const ArticleDiv = styled.div`
     background-color:rgb(239,239,239);
     display:flex;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
+   
   .col1{
       flex-basis:9%;
      
@@ -176,6 +173,7 @@ const ArticleDiv = styled.div`
        }
 
     .col2{
+      
       flex-basis:61%;
       border-radius: 10px;
       border: 1px solid #D8D8D8;
@@ -232,6 +230,9 @@ const ArticleDiv = styled.div`
 
             .description{
                 width:100%;
+                overflow-x:hidden;
+                
+
                 img{
                     width:100%;
                 }
