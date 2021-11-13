@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
 
 const Container = styled.header`
     position: fixed;
@@ -155,6 +157,20 @@ const Container = styled.header`
 `;
 
 export default function Navbar() {
+
+    const [query, setQuery] = useState("");
+ 
+   
+    function handleChange(e){
+        let newQuery = e.target.value;
+        newQuery= newQuery.trim().split(" ")[0];
+       
+        setQuery(newQuery)
+
+    }
+        
+   
+    
     return (
         <Container>
             <div className="cont">
@@ -162,10 +178,12 @@ export default function Navbar() {
                     <div>DEV</div>
                 </Link>
                 <div className="search">
-                    <input type="text" placeholder="Search..." />
+                    <input onChange={ handleChange} type="text" placeholder="Search..." />
 
-                    <div>
-                        <img src="/Navbar/search.svg" alt="" />
+                    <div >
+                        <Link to={`/search/${query}`}>
+                            <img src="/Navbar/search.svg" alt="" />
+                        </Link> 
                     </div>
                 </div>
                 <div className="log-buttons">
