@@ -7,41 +7,64 @@ import ReactMarkdown from "react-markdown";
 import heart from "../images/heart.svg"
 import unicorn from "../images/unicorn.svg"
 import bookmark from "../images/bookmark.svg"
+import { useParams } from "react-router";
 
 
 
 function Article() {
 
    
-    const [data, setData] = useState([]);
+    const [data, setData] = useState({});
+
+   
+    const [user, setUser] = useState({});
   
     const [isLoading, setLoading] = useState(true);
 
     const [tagData, setTagData] = useState([]);
     const [description, setDescription] = useState("");
-    // console.log('description:', description)
     
-   
+    const params = useParams();
   
    
     useEffect(() => {
-        axios.get("https://dev.to/api/articles/710577")
+        axios.get(`https://dev.to/api/articles/${params.id}`)
         .then((res) => {
-            // console.log('res:', res.data)
             setData(res.data)
             setTagData(res.data.tags)
             setLoading(false)
             setDescription(res.data.body_markdown)
+            getData(res.data);
         })
-        
 
-    },[])
+    }, [])
+    
+    const getData = (data) => {
+        try {
+           
+                
+           axios.get( `https://dev.to/api/users/by_username?url=${data.user.username}`)
+           .then((el) => {
+             
+               setUser(el.data)
+           });
+            
+        }
+        catch (err){
+            console.log(err);
+            
+        }
+    };
     
   
     
 
     return isLoading ? (
-        "Loading ..."
+        
+            
+        <div >"Loading ..."</div>
+           
+        
     ) :  (
         <ArticleDiv className="Article">
                 <div className="col1">
@@ -107,10 +130,10 @@ function Article() {
                                      </div>
                                 </div>
                                 <button>Follow</button>
-                                <p>I am a software developer that loves going to any extent to make great things happen. I write history with PHP (Laravel), JavaScript (React). I'm a contributor @firefoxDevTools and tutor @udemy.</p>
+                                <p>{ user.summary}</p>
 
                                 <p className="heading">LOCATION</p>
-                                <span className="ans">Nigeria</span>
+                                <span className="ans">{ user.location}</span>
 
                                 <p className="heading">EDUCATION</p>
                                 <span className="ans">B.A</span>
@@ -119,7 +142,7 @@ function Article() {
                                 <span className="ans">Software Engineer at Patricia.</span>
 
                                 <p className="heading">JOINED</p>
-                                <span className="ans">Jun 10, 2018</span>
+                                <span className="ans">{ user.joined_at}</span>
 
                             </div>
                         </div>
@@ -135,7 +158,7 @@ function Article() {
 const ArticleDiv = styled.div`
     position:sticky;
     top:57px;
-    z-index:-10;
+    z-index:-1;
     padding-top:20px;
     padding-bottom:250px;
     width:100%;
@@ -304,6 +327,9 @@ const ArticleDiv = styled.div`
                         font-size: 16px;
                         font-weight: 600;
                         border-style: none;
+                        &:hover {
+                            color: #1525d3;
+                        }
                     }
                     .heading{
                         color:#717171;

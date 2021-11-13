@@ -166,6 +166,7 @@ export default function Navbar() {
         newQuery= newQuery.trim().split(" ")[0];
        
         setQuery(newQuery)
+        
 
     }
         
@@ -178,10 +179,10 @@ export default function Navbar() {
                     <div>DEV</div>
                 </Link>
                 <div className="search">
-                    <input onChange={ handleChange} type="text" placeholder="Search..." />
+                    <input value={query} onChange={ handleChange} type="text" placeholder="Search..." />
 
-                    <div >
-                        <Link to={`/search/${query}`}>
+                    <div onClick={()=>setQuery("")} >
+                        <Link  to={`/search/${query}`}>
                             <img src="/Navbar/search.svg" alt="" />
                         </Link> 
                     </div>
