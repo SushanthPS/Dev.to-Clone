@@ -10,7 +10,7 @@ const Container = styled.header`
     right: 0px;
     height: 56px;
     width: 100%;
-    background-color:white;
+    background-color: white;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
     background-color: white;
     display: block;
@@ -157,21 +157,15 @@ const Container = styled.header`
 `;
 
 export default function Navbar() {
-
     const [query, setQuery] = useState("");
- 
-   
-    function handleChange(e){
-        let newQuery = e.target.value;
-        newQuery= newQuery.trim().split(" ")[0];
-       
-        setQuery(newQuery)
-        
 
+    function handleChange(e) {
+        let newQuery = e.target.value;
+        newQuery = newQuery.trim().split(" ")[0];
+
+        setQuery(newQuery);
     }
-        
-   
-    
+
     return (
         <Container>
             <div className="cont">
@@ -179,17 +173,26 @@ export default function Navbar() {
                     <div>DEV</div>
                 </Link>
                 <div className="search">
-                    <input value={query} onChange={ handleChange} type="text" placeholder="Search..." />
+                    <input
+                        value={query}
+                        onChange={handleChange}
+                        type="text"
+                        placeholder="Search..."
+                    />
 
-                    <div onClick={()=>setQuery("")} >
-                        <Link  to={`/search/${query}`}>
+                    <div onClick={() => setQuery("")}>
+                        <Link to={`/search/${query}`}>
                             <img src="/Navbar/search.svg" alt="" />
-                        </Link> 
+                        </Link>
                     </div>
                 </div>
                 <div className="log-buttons">
-                    <Link className="login">Log in</Link>
-                    <Link className="register">Create account</Link>
+                    <Link to="/" className="login">
+                        Log in
+                    </Link>
+                    <Link to="/" className="register">
+                        Create account
+                    </Link>
                 </div>
             </div>
         </Container>
