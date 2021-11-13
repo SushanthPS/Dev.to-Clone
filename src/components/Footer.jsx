@@ -7,7 +7,6 @@ const Container = styled.footer`
     text-align: center;
     background-color: #d6d6d7;
     height: 156px;
-    margin-top: 700px;
 
     .cont {
         max-width: 768px;

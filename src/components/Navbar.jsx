@@ -12,6 +12,10 @@ const Container = styled.header`
     width: 100%;
     background-color:white;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    display: block;
+    box-sizing: border-box;
+    z-index: 999;
 
     a {
         color: inherit;
@@ -47,6 +51,8 @@ const Container = styled.header`
             height: 40px;
             border-radius: 3px;
             line-height: 37px;
+            text-align: center;
+            letter-spacing: -1px;
         }
 
         div:hover {
