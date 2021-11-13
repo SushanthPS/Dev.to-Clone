@@ -22,12 +22,14 @@ export default function Routes() {
         <Article />
         <Footer />
       </Route>
-     <Route path="/search/:query" exact>
-         <SearchArticles/>
-     </Route>
+      <Route path="/search/:query" exact>
+      <Navbar />
+        <SearchArticles/>
+        <Footer />
+      </Route>
       <Route>
         <Error />
-      </Route>
+       </Route>
     </Switch>
   );
 

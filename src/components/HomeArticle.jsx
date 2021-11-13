@@ -383,6 +383,7 @@ const Hover = styled.div`
 `;
 
 export default function HomeArticle({ obj, i }) {
+
     const [user, setUser] = useState({});
     const [pop, setPop] = useState(false);
 
